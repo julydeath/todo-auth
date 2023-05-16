@@ -1,0 +1,20 @@
+
+
+.todo-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: aqua;
+    border: aqua solid;
+    margin-left: 30rem;
+    margin-right: 30rem;
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.list-btn {
+    margin-top: 1.4rem;
+    margin-bottom: 1rem;
+    color: red;
+}

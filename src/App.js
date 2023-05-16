@@ -1,21 +1,30 @@
-import './App.css'
-import Todo from "./components/Todo"
-import Navbar from "./components/Navbar"
-import Home from "./components/Home"
-import Login from "./components/Login"
-import SignUp from "./components/SignUp"
-import { Routes,Route } from 'react-router-dom';
+import "./App.css";
+import Todo from "./components/todo/Todo";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home/Home";
+import Login from "./components/login/Login";
+import Createaccount from "./components/createaccount/CreateAccount";
+import { Routes, Route } from "react-router-dom";
+import { UserAuthContextProvider } from "./components/auth/UserAuth";
+import Protected from "./components/Procted";
+import { useState } from "react";
 
 function App() {
+  const [userLogged, setUserLogged] = useState(false)
   return (
     <div className="App">
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='login' element={<Login/>}/>
-        <Route path='signup' element={<SignUp/>}/>
-        <Route path='todo' element={<Todo/>}/>
-      </Routes>
+      <UserAuthContextProvider>
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Createaccount />} />
+          <Route path="todo" element={<Todo />} />
+          <Route path="/profile"  element={<Protected isLoggedIn={userLogged}><Todo /></Protected>}
+/>
+        </Routes>
+      </UserAuthContextProvider>
     </div>
   );
 }
