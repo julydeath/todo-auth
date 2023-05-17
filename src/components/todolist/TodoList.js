@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./todolist.css"
 import {RiDeleteBin5Line} from "react-icons/ri"
 
-const TodoList = ({list,getId}) => {
+const TodoList = ({list,getId,loading}) => {
   const [id, setId] = useState('')
 
   const deleteData = async () => {
@@ -15,6 +15,12 @@ const TodoList = ({list,getId}) => {
     deleteData()
     getId(id)
   },[id])
+
+  if(loading){
+    return(
+      <h1 className='todo-loading'>Loading...</h1>
+    )
+  }
   
   return (
     <div className='todo-list-container'>

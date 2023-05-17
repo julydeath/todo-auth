@@ -76,6 +76,12 @@
   .login-Wrapper {
       padding: 20px;
   }
+
+  .login-span-signup {
+    text-decoration: underline;
+    color: #6FFFE9;
+    cursor: pointer;
+  }
   
   .login-group.focused label::after {
     left: 0;

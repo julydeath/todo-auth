@@ -9,6 +9,7 @@ const Form = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const [id, setId] = useState('')
+  const [loading, setLoading] = useState(true)
   const {user} = useUserAuth()
 
   const getId = (id) => {
@@ -18,6 +19,7 @@ const Form = () => {
   const fetchData = async () => {
     const data = await axios.get("https://absolute-halibut-27.hasura.app/api/rest/all-todos")
     setTodos(data.data.TodoAuth.filter((li) => li.userid === user?.uid))
+    setLoading(false)
   }
 
   const postData = async () => {
@@ -53,7 +55,7 @@ const Form = () => {
         <button className="btn">ADD</button>
       </form>
       <div className="todo-list-container">
-        <TodoList list={todos} getId={getId}/>
+        <TodoList list={todos} getId={getId} loading={loading}/>
       </div>
     </div>
   );

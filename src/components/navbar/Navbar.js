@@ -9,8 +9,12 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const handleClick = async() => {
-    await logout()
-    navigate('/login')
+    try {
+      await logout()
+      navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

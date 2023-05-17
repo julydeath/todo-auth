@@ -7,7 +7,8 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const {logIn,user} = useUserAuth()
+  //const [logged, setLogged] = useState(false)
+  const {logIn} = useUserAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async(e) => {
@@ -15,6 +16,7 @@ const Login = () => {
     try {
       await logIn(email,password)
       navigate('/todo')
+      //setLogged(true)
     } catch (error) {
       setError(error.message)
     }
@@ -46,6 +48,7 @@ const Login = () => {
                 <button className="login-btn btn-primary">
                   Login
                 </button>
+                <p>Dont have account create one ? <span onClick={() => navigate('/signup')} className="login-span-signup">signup</span></p>
               </div>
             </form>
           </div>

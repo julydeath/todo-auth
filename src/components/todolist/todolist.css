@@ -18,3 +18,9 @@
     margin-bottom: 1rem;
     color: red;
 }
+
+.todo-loading {
+    display: flex;
+    justify-content: center;
+    color: aqua;
+}
