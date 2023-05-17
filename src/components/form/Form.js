@@ -62,7 +62,7 @@ const Form = () => {
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
         />
-        <button className="btn">ADD</button>
+        <button className="btn">ADD TODO</button>
       </form>
       <div className="todo-list-container">
         <TodoList list={todos} getId={getId} loading={loading}/>
