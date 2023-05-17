@@ -8,6 +8,7 @@ import { useUserAuth } from "../auth/UserAuth";
 const Form = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
+  const [newTodos, setNewTodos] = useState([])
   const [id, setId] = useState('')
   const [loading, setLoading] = useState(true)
   const {user} = useUserAuth()
@@ -17,7 +18,11 @@ const Form = () => {
   }
 
   const fetchData = async () => {
-    const data = await axios.get("https://absolute-halibut-27.hasura.app/api/rest/all-todos")
+    const data = await axios.get("https://absolute-halibut-27.hasura.app/api/rest/all-todos", {
+      headers: {
+        "x-hasura-admin-secret": process.env.REACT_APP_HASURA_KEY
+      }
+    });
     setTodos(data.data.TodoAuth.filter((li) => li.userid === user?.uid))
     setLoading(false)
   }
@@ -26,19 +31,24 @@ const Form = () => {
     const data = await axios.post("https://absolute-halibut-27.hasura.app/api/rest/add-todo",{
       "task":todo,
       "userid":user.uid
+    },{
+      headers: {
+        "x-hasura-admin-secret": process.env.REACT_APP_HASURA_KEY
+      }
     })
   }
 
 
   useEffect(() => {
     fetchData()
-  },[todos,id])
+  },[newTodos,id,user])
 
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postData()
+    await postData()
+    setNewTodos([...newTodos, todo])
     setTodo("");
   };
 
