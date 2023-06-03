@@ -6,11 +6,9 @@ import Login from "./components/login/Login";
 import Createaccount from "./components/createaccount/CreateAccount";
 import { Routes, Route } from "react-router-dom";
 import { UserAuthContextProvider } from "./components/auth/UserAuth";
-import Protected from "./components/Procted";
-import { useState } from "react";
+import Protected from "./Protected";
 
 function App() {
-  const [userLogged, setUserLogged] = useState(false)
   return (
     <div className="App">
       <UserAuthContextProvider>
@@ -21,8 +19,14 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Createaccount />} />
           <Route path="todo" element={<Todo />} />
-          <Route path="/profile"  element={<Protected isLoggedIn={userLogged}><Todo /></Protected>}
-/>
+          <Route
+            path="/profile"
+            element={
+              <Protected>
+                <Todo />
+              </Protected>
+            }
+          />
         </Routes>
       </UserAuthContextProvider>
     </div>

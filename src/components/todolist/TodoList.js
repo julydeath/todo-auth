@@ -11,19 +11,19 @@ const TodoList = ({ list, getId, loading }) => {
       {
         method: "DELETE",
         headers: {
-          "x-hasura-admin-secret": process.env.REACT_APP_HASURA_KEY
+          "x-hasura-admin-secret": process.env.REACT_APP_HASURA_KEY,
         },
       }
     );
   };
 
-  const deleteTodo = async() => {
-    await deleteData()
-    getId(id)
-  }
+  const deleteTodo = async () => {
+    await deleteData();
+    getId(id);
+  };
 
   useEffect(() => {
-    deleteTodo()
+    deleteTodo();
   }, [id]);
 
   if (loading) {
